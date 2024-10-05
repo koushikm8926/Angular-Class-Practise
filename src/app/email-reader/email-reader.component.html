@@ -50,8 +50,17 @@
         type="text"
         name="subject"
         [(ngModel)]="email.subject"
+        required
+        minlength="10"
+        maxlength="50"
         placeholder="Enter subject"
+        #subject="ngModel"
       />
+      <div *ngIf="subject.invalid && subject.touched" class="error">
+        <div *ngIf="subject.errors?.['required']">This field is required.</div>
+        <div *ngIf="subject.errors?.['minlength']">Minimum length is 10 characters.</div>
+        <div *ngIf="subject.errors?.['maxlength']">Maximum length is 50 characters.</div>
+      </div>
     </div>
 
     <div class="form-group">
