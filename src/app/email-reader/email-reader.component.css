@@ -74,4 +74,14 @@
   .email-preview p {
     margin: 5px 0;
   }
+  /* Green border for valid fields */
+.valid-border {
+  border: 10px solid green;
+}
+
+/* Yellow border for invalid fields */
+.invalid-border {
+  border: 10px solid yellow;
+}
+
   

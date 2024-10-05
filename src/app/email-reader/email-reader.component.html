@@ -13,6 +13,7 @@
         pattern=".+@gmail\.com$" 
         placeholder="Enter your email"
         #from="ngModel"
+        [ngClass]="{'valid-border': from.valid, 'invalid-border': from.invalid && from.touched}"
       />
       <div *ngIf="from.invalid" class="error">
         <div *ngIf="from.errors?.['required']">This field is required.</div>
@@ -34,7 +35,8 @@
         placeholder="Enter recipient's email"
         pattern=".+@gmail\.com$" 
         placeholder="Enter your email"
-        #from="ngModel"
+        #to="ngModel"
+        [ngClass]="{'valid-border': to.valid, 'invalid-border': to.invalid && to.touched}"
       />
       <div *ngIf="from.invalid" class="error">
         <div *ngIf="from.errors?.['required']">This field is required.</div>
