@@ -14,6 +14,7 @@
         placeholder="Enter your email"
         #from="ngModel"
         [ngClass]="{'valid-border': from.valid, 'invalid-border': from.invalid && from.touched}"
+        appHighlight  
       />
       <div *ngIf="from.invalid" class="error">
         <div *ngIf="from.errors?.['required']">This field is required.</div>
@@ -37,6 +38,7 @@
         placeholder="Enter your email"
         #to="ngModel"
         [ngClass]="{'valid-border': to.valid, 'invalid-border': to.invalid && to.touched}"
+        appHighlight  
       />
       <div *ngIf="from.invalid" class="error">
         <div *ngIf="from.errors?.['required']">This field is required.</div>
@@ -57,6 +59,7 @@
         maxlength="50"
         placeholder="Enter subject"
         #subject="ngModel"
+        appHighlight  
       />
       <div *ngIf="subject.invalid && subject.touched" class="error">
         <div *ngIf="subject.errors?.['required']">This field is required.</div>
@@ -72,6 +75,7 @@
         name="body"
         [(ngModel)]="email.body"
         placeholder="Enter your message"
+        appHighlight
       ></textarea>
     </div>
 
@@ -89,4 +93,31 @@
     <p><strong>Body:</strong></p>
     <p>{{ email.body || "(empty)" }}</p>
   </div>
+
+
+  <!-- table that will hold the email  -->
+  <div class="sent-emails">
+    <h3>Sent Emails</h3>
+    <div *ngIf="sentEmails.length === 0; else emailList">
+      <p>The list of emails is empty.</p>
+    </div>
+    <ng-template #emailList>
+      <table>
+        <thead>
+          <tr>
+            <th>To</th>
+            <th>Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sentEmail of sentEmails">
+            <td>{{ sentEmail.to }}</td>
+            <td>{{ sentEmail.subject }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </div>
+
+
 </div>
