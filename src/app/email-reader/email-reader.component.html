@@ -3,22 +3,65 @@
   <form>
     <div class="form-group">
       <label for="from">From:</label>
-      <input id="from" type="text" name="from" [(ngModel)]="email.from" placeholder="Enter your email" />
+      <input
+        id="from"
+        type="text"
+        name="from"
+        [(ngModel)]="email.from"
+        required
+        email
+        pattern=".+@gmail\.com$" 
+        placeholder="Enter your email"
+        #from="ngModel"
+      />
+      <div *ngIf="from.invalid" class="error">
+        <div *ngIf="from.errors?.['required']">This field is required.</div>
+        <div *ngIf="from.errors?.['email']">Enter a valid email address.</div>
+        <div *ngIf="from.errors?.['pattern']">Email must be a gmail.com address.</div>
+      </div>
+      
     </div>
 
     <div class="form-group">
       <label for="to">To:</label>
-      <input id="to" type="text" name="to" [(ngModel)]="email.to" placeholder="Enter recipient's email" />
+      <input
+        id="to"
+        type="text"
+        name="to"
+        [(ngModel)]="email.to"
+        required
+        email
+        placeholder="Enter recipient's email"
+        pattern=".+@gmail\.com$" 
+        placeholder="Enter your email"
+        #from="ngModel"
+      />
+      <div *ngIf="from.invalid" class="error">
+        <div *ngIf="from.errors?.['required']">This field is required.</div>
+        <div *ngIf="from.errors?.['email']">Enter a valid email address.</div>
+        <div *ngIf="from.errors?.['pattern']">Email must be a gmail.com address.</div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="subject">Subject:</label>
-      <input id="subject" type="text" name="subject" [(ngModel)]="email.subject" placeholder="Enter subject" />
+      <input
+        id="subject"
+        type="text"
+        name="subject"
+        [(ngModel)]="email.subject"
+        placeholder="Enter subject"
+      />
     </div>
 
     <div class="form-group">
       <label for="body">Body:</label>
-      <textarea id="body" name="body" [(ngModel)]="email.body" placeholder="Enter your message"></textarea>
+      <textarea
+        id="body"
+        name="body"
+        [(ngModel)]="email.body"
+        placeholder="Enter your message"
+      ></textarea>
     </div>
 
     <div class="buttons">
@@ -29,10 +72,10 @@
 
   <div class="email-preview">
     <h3>Up-to-Date Viewer</h3>
-    <p><strong>From:</strong> {{ email.from || '(empty)' }}</p>
-    <p><strong>To:</strong> {{ email.to || '(empty)' }}</p>
-    <p><strong>Subject:</strong> {{ email.subject || '(empty)' }}</p>
+    <p><strong>From:</strong> {{ email.from || "(empty)" }}</p>
+    <p><strong>To:</strong> {{ email.to || "(empty)" }}</p>
+    <p><strong>Subject:</strong> {{ email.subject || "(empty)" }}</p>
     <p><strong>Body:</strong></p>
-    <p>{{ email.body || '(empty)' }}</p>
+    <p>{{ email.body || "(empty)" }}</p>
   </div>
 </div>

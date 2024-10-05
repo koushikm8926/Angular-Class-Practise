@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-email-reader',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule,],
   templateUrl: './email-reader.component.html',
   styleUrl: './email-reader.component.css'
 })
@@ -17,8 +17,11 @@ export class EmailReaderComponent {
     body: ''
   };
   sendEmail() {
-    alert(`Email Sent!\n\nFrom: ${this.email.from}\nTo: ${this.email.to}\nSubject: ${this.email.subject}\nBody: ${this.email.body}`);
-    this.clearForm();
+    if (!this.email.from || !this.email.to) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+    alert('Email Sent!\n' + JSON.stringify(this.email));
   }
 
   clearForm() {
